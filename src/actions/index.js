@@ -1,5 +1,6 @@
 export const FETCH_POSTS = 'FETCH_POSTS'
 export const FETCH_POST = 'FETCH_POST'
+export const DELETE_POST = 'DELETE_POST'
 export const CREATE_POST = 'CREATE_POST'
 
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api'
@@ -24,6 +25,22 @@ export function fetchPost(id) {
   return {
     type: FETCH_POST,
     payload: request
+  }
+}
+
+export function deletePost(id, callback) {
+  fetch(`${ROOT_URL}/posts/${id}?key=${KEY}`,
+    {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    })
+    .then(response => response.json())
+    .then(() => callback())
+    .catch(error => console.log('ERROR', error))
+
+  return {
+    type: DELETE_POST,
+    payload: id
   }
 }
 
