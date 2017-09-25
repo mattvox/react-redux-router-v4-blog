@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
-import { Router, browserHistory } from 'react-router'
+
 import promise from 'redux-promise'
 import thunk from 'redux-thunk'
 
@@ -23,7 +23,7 @@ const store = createStore(reducers, /*preloadedState,*/ composeEnhancers(
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory} routes={routes} />
+    {routes}
   </Provider>
   , document.getElementById('root'))
 registerServiceWorker()
